@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/gorilla/mux"
-	uc "github.com/mahani-software-engineering/website/usecases"
+	uc "github.com/Reach-Insurance/go/usecases"
 )
 
 //go:embed pages/*
@@ -22,13 +22,14 @@ func resourceNotFound(w http.ResponseWriter, r *http.Request) {
 }
 
 func getRouter() *mux.Router {
-	website, _ := fs.Sub(pages, "client/tailwind")
+	website, _ := fs.Sub(pages, "pages")
 	
 	router := mux.NewRouter()
 	//---
 	router.HandleFunc("/user/login", uc.UserLogin).Methods("POST")
 	router.HandleFunc("/user/new", uc.RegisterUser).Methods("POST")
 	//pages
+	router.PathPrefix("/home").Handler(http.StripPrefix("/home/", http.FileServer(http.FS(website))) ).Methods("GET")
 	router.PathPrefix("/").Handler( http.FileServer(http.FS(website)) ).Methods("GET")
 	//Not found
 	router.NotFoundHandler = http.HandlerFunc(resourceNotFound)
@@ -37,11 +38,11 @@ func getRouter() *mux.Router {
 }
 
 func main() {
-    //++++| os.Args |+++++
-    baseAddress := ":443" 
+    //+++++| os.Args |++++++
+    baseAddress := ":4800" 
     addr := flag.String("addr", baseAddress, "Web server address") 
     flag.Parse()
-    //++++++++++++++++++++
+    //++++++++++++++++++++++
     uc.Init()
     
     fmt.Println("Server listening on port: "+(strings.Split(baseAddress,":")[1])) 

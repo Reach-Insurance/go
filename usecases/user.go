@@ -8,7 +8,7 @@ import (
     "net/http"
     "encoding/json"
     "github.com/gorilla/mux"
-    "github.com/mahani-software-engineering/website/db"
+    "github.com/Reach-Insurance/go/db"
 )
 
 type Credentials struct {
@@ -20,7 +20,7 @@ func RegisterUser(w http.ResponseWriter, r *http.Request){
 	var user db.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
 	database.Create(&user)
-	respondToClient(w, 200, user, "Registered successfully.")
+	respondToClient(w, 200, user, "User Registered successfully.")
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {

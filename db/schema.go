@@ -11,7 +11,7 @@ type User struct {
   Usertype  string `json:"usertype" gorm:"size:20"`
   Firstname string `json:"firstname" gorm:"size:20"`
   Lastname  string `json:"lastname" gorm:"size:20"`
-  Address   string `json:"address" gorm:"size:40"`
+  Address   string `json:"address" gorm:"size:30"`
   Phone     string `json:"phone" gorm:"size:20"`
   Email     string `json:"email" gorm:"size:40"`
 }

@@ -6,17 +6,14 @@ import (
     "net/http"
 	"gorm.io/gorm"
 	"encoding/json"
-	"github.com/mahani-software-engineering/website/db"
+	"github.com/Reach-Insurance/go/db"
 )
-
-
 
 var database *gorm.DB
 
 func Init(){
     database, _ = db.Connect()
 }
-
 
 func respondToClient(w http.ResponseWriter, statusCode uint, edata interface{}, simpleMessage string){
     w.Header().Set("Content-Type","application/json")

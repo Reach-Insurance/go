@@ -1,4 +1,4 @@
-module github.com/mahani-software-engineering/website
+module github.com/Reach-Insurance/go
 
 go 1.17
 

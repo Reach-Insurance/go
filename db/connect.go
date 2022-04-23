@@ -22,10 +22,6 @@ func Connect() (*gorm.DB, error) {
       }
     //======= Migrate the schema ======
     db.AutoMigrate(&User{})
-    db.AutoMigrate(&Device{})
-    db.AutoMigrate(&Vehicle{})
-    db.AutoMigrate(&Location{})
-    db.AutoMigrate(&DeviceHistory{})
     
 	return db, nil
 }
